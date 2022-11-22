@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printhex_uc.c                                   :+:      :+:    :+:   */
+/*   ft_putnbr_base_uc.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matavare <matavare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:15:31 by matavare          #+#    #+#             */
-/*   Updated: 2022/11/21 18:15:50 by matavare         ###   ########.fr       */
+/*   Updated: 2022/11/22 18:40:12 by matavare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-void	ft_printhex_lc(int nbr)
+int	ft_putnbr_base_uc(long unsigned int nbr, int base)
 {
-	int	temp;
+	long unsigned int	temp;
+	long int			i;
 
-	temp = nbr / 16;
+	i = 0;
+	temp = nbr / base;
 	if (temp > 0)
 	{
-		ft_printhex_lc(nbr / 16);
-		if ((nbr % 16) < 10)
-			nbr = nbr % 16 + 48;
+		i += ft_putnbr_base_uc(nbr / base, base);
+		if ((nbr % base) < 10)
+			nbr = nbr % base + 48;
 		else
-			nbr = nbr % 16 + 55;
-		write(1, &nbr, 1);
+			nbr = nbr % base + 55;
+		i += write(1, &nbr, 1);
 	}
 	else
 	{
@@ -32,11 +34,16 @@ void	ft_printhex_lc(int nbr)
 			temp = nbr + 48;
 		else
 			temp = nbr + 55;
-		write(1, &temp, 1);
+		i += write(1, &temp, 1);
 	}
+	return (i);
 }
 
 /* int	main(void)
 {
-	ft_printhex_lc(256876543);
-} */
+	int	i;
+
+	i = ft_printhex_uc(256876543);
+	printf("\n%d\n", i);
+}
+ */

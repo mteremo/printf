@@ -6,13 +6,14 @@
 /*   By: matavare <matavare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:42:52 by matavare          #+#    #+#             */
-/*   Updated: 2022/11/21 18:09:45 by matavare         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:34:47 by matavare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 int	ft_putchar(char c)
 {
 	write(1, &c, 1);
+	return (1);
 }

@@ -6,25 +6,27 @@
 /*   By: matavare <matavare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:02:42 by matavare          #+#    #+#             */
-/*   Updated: 2022/11/21 18:15:57 by matavare         ###   ########.fr       */
+/*   Updated: 2022/11/22 18:27:38 by matavare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-void	ft_printhex_lc(int nbr)
+int	ft_printhex_lc(long unsigned int nbr)
 {
-	int	temp;
+	long unsigned int	temp;
+	long int			i;
 
+	i = 0;
 	temp = nbr / 16;
 	if (temp > 0)
 	{
-		ft_printhex_lc(nbr / 16);
+		i += ft_printhex_lc(nbr / 16);
 		if ((nbr % 16) < 10)
 			nbr = nbr % 16 + 48;
 		else
 			nbr = nbr % 16 + 87;
-		write(1, &nbr, 1);
+		i += write(1, &nbr, 1);
 	}
 	else
 	{
@@ -32,8 +34,9 @@ void	ft_printhex_lc(int nbr)
 			temp = nbr + 48;
 		else
 			temp = nbr + 87;
-		write(1, &temp, 1);
+		i += write(1, &temp, 1);
 	}
+	return (i);
 }
 
 /* int	main(void)
