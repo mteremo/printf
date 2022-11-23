@@ -6,31 +6,28 @@
 /*   By: matavare <matavare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:35:47 by matavare          #+#    #+#             */
-/*   Updated: 2022/11/22 18:38:45 by matavare         ###   ########.fr       */
+/*   Updated: 2022/11/23 16:40:43 by matavare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	printfconditions(va_list optional_param, const char c)
+int	printfconditions(va_list arg, const char c)
 {
 	if (c == 'c')
-		return (ft_putchar(va_arg(optional_param, int)));
+		return (ft_putchar(va_arg(arg, int)));
 	if (c == 's')
-		return (ft_putstr(va_arg(optional_param, char *)));
+		return (ft_putstr(va_arg(arg, char *)));
 	if (c == 'p')
-		return (ft_pointer(va_arg(optional_param, long unsigned int)));
-	if (c == 'd')
-		return (ft_putnbr(va_arg(optional_param, int)));
-	if (c == 'i')
-		return (ft_putnbr(va_arg(optional_param, int)));
+		return (ft_pointer(va_arg(arg, long unsigned int)));
+	if (c == 'd' || c == 'i')
+		return (ft_putnbr(va_arg(arg, int)));
 	if (c == 'u')
-		return (ft_putnbr_base_uc(va_arg(optional_param, unsigned int), 10));
+		return (ft_nbr_base(va_arg(arg, unsigned int), "0123456789", 10));
 	if (c == 'x')
-		return (ft_printhex_lc(va_arg(optional_param, long unsigned int)));
+		return (ft_nbr_base(va_arg(arg, unsigned int), "0123456789abcdef", 16));
 	if (c == 'X')
-		return (ft_putnbr_base_uc(va_arg(optional_param, \
-		long unsigned int), 16));
+		return (ft_nbr_base(va_arg(arg, unsigned int), "0123456789ABCDEF", 16));
 	if (c == '%')
 		return (ft_putchar(c));
 	return (-1);
@@ -40,9 +37,9 @@ int	ft_printf(const char *str, ...)
 {
 	int			i;
 	int			final;
-	va_list		optional_param;
+	va_list		arg;
 
-	va_start(optional_param, str);
+	va_start(arg, str);
 	i = 0;
 	final = 0;
 	if (!str)
@@ -52,32 +49,12 @@ int	ft_printf(const char *str, ...)
 		if (str[i] == '%')
 		{
 			i++;
-			final += printfconditions(optional_param, str[i]);
+			final += printfconditions(arg, str[i]);
 		}	
 		else
 			final += write(1, &str[i], 1);
 		i++;
 	}
-	va_end(optional_param);
+	va_end(arg);
 	return (final);
 }
-
-/* int main(void)
-{ */
-	/* int	i;
-
-	i = 10;
-	printf("%d\n", ft_printf("percent sign %%\n"));
-	printf("%d\n", ft_printf("char %p\n", 7));
-	printf("%d\n", ft_printf("string %s\n", "teresa"));
-	printf("%d\n", ft_printf("pointer %p\n", (char *)140));
-	printf("%d\n", ft_printf("unsigned %u\n", -1));
-	printf("%d\n", ft_printf("lets print a percent sign %%, char %d, \
-	a string %s, a negative int %i, decimal %d and a unsigned %u, \
-	a pointer %p\n", 'b', "teresa", -2, 9, -1, &i));
-	printf("%d\n", ft_printf(" NULL %s NULL ", "NULL"));
-	printf("%d\n", ft_printf(" NULL %p NULL ", NULL)); */
-	/* printf("%d\n", ft_printf(" %s ", "-"));
-	ft_printf(" %s ", "-");
-}
- */

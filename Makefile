@@ -1,6 +1,6 @@
 NAME = 	libftprintf.a
 
-SRC = ft_pointer.c ft_printf.c ft_printhex_lc.c ft_putnbr_base_uc.c \
+SRC = ft_pointer.c ft_printf.c ft_ptrhex.c ft_nbr_base.c \
 	ft_putchar.c ft_putnbr.c ft_putstr.c
 
 SRCLIBFT = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c\
