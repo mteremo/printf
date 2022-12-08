@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matavare <matavare@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matavare <matavare@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 18:08:38 by matavare          #+#    #+#             */
-/*   Updated: 2022/11/23 16:50:58 by matavare         ###   ########.fr       */
+/*   Updated: 2022/12/08 17:11:58 by matavare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_PRINTF_H
 
 # include "libft/libft.h"
+# include <stdarg.h>
 
 int	ft_printf(const char *str, ...);
 int	ft_pointer(long unsigned int ptr);
