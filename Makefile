@@ -25,7 +25,7 @@ LIB = ft_printf.h
 
 LIBC = ar rcs
 
-CC = gcc
+CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
